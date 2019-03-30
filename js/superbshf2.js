@@ -45,29 +45,29 @@ for (i=0; i<size; i++)
   face = new THREE.Face3(0,1,4);
   face.color=new THREE.Color(0xffffff);
   geoSidesTopo.faces.push( face )
-  face = new THREE.Face3(4,5,1);
+  face = new THREE.Face3(4,1,5);
   face.color=new THREE.Color(0xffffff);
   geoSidesTopo.faces.push( face )
-  face = new THREE.Face3(0,2,6);
+  face = new THREE.Face3(0,6,2);
   face.color=new THREE.Color(0xffffff);
   geoSidesTopo.faces.push( face )
-  face = new THREE.Face3(6,4,0);
+  face = new THREE.Face3(6,0,4);
   face.color=new THREE.Color(0xffffff);
   geoSidesTopo.faces.push( face )
   face = new THREE.Face3(2,6,7);
   face.color=new THREE.Color(0xffffff);
   geoSidesTopo.faces.push( face )
-  face = new THREE.Face3(2,3,7);
+  face = new THREE.Face3(2,7,3);
   face.color=new THREE.Color(0xffffff);
   geoSidesTopo.faces.push( face )
   face = new THREE.Face3(1,3,5);
   face.color=new THREE.Color(0xffffff);
   geoSidesTopo.faces.push( face )
-  face = new THREE.Face3(3,5,7);
+  face = new THREE.Face3(3,7,5);
   face.color=new THREE.Color(0xffffff);
   geoSidesTopo.faces.push( face )
 
-  face = new THREE.Face3(0,1,4);
+  face = new THREE.Face3(0,4,1);
   face.color=new THREE.Color(0xffffff);
   geoSidesBottom.faces.push( face )
   face = new THREE.Face3(4,5,1);
@@ -79,13 +79,13 @@ for (i=0; i<size; i++)
   face = new THREE.Face3(6,4,0);
   face.color=new THREE.Color(0xffffff);
   geoSidesBottom.faces.push( face )
-  face = new THREE.Face3(2,6,7);
+  face = new THREE.Face3(2,7,6);
   face.color=new THREE.Color(0xffffff);
   geoSidesBottom.faces.push( face )
   face = new THREE.Face3(2,3,7);
   face.color=new THREE.Color(0xffffff);
   geoSidesBottom.faces.push( face )
-  face = new THREE.Face3(1,3,5);
+  face = new THREE.Face3(1,5,3);
   face.color=new THREE.Color(0xffffff);
   geoSidesBottom.faces.push( face )
   face = new THREE.Face3(3,5,7);
