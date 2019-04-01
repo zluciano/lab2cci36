@@ -218,7 +218,7 @@ geoTopo2.uvsNeedUpdate = true;
   var textureLoaderbanana = new THREE.TextureLoader();
   var texturebanana = textureLoaderbanana.load( "banana.png" );
 
-  var meshc = new THREE.Mesh( geoTopo, 
+  var meshc1 = new THREE.Mesh( geoTopo, 
     new THREE.MeshPhongMaterial({
        vertexColors: THREE.VertexColors,
      //flatShading: true,
@@ -226,7 +226,16 @@ geoTopo2.uvsNeedUpdate = true;
        map: textureforster1,
      }) 
    )
-  scene.add(meshc)
+  scene.add(meshc1)
+
+  var meshc2 = new THREE.Mesh( geoTopo, 
+    new THREE.MeshPhongMaterial({
+       vertexColors: THREE.VertexColors,
+     //flatShading: true,
+       side: THREE.DoubleSide,
+       map: textureforster2,
+     }) 
+   )
 
   var mesh = new THREE.Mesh( geoTopo2, 
     new THREE.MeshPhongMaterial({
@@ -309,16 +318,17 @@ geoTopo2.uvsNeedUpdate = true;
   
   var t=0;
   var s=0;
+  var time = 0;
   var angle = 0;
   var estado=1;
+  var open = true;
 
 function animate() { 
   requestAnimationFrame( animate ); 
   controls.update()
   //camera.lookAt(new THREE.Vector3(0, 0, 0))
-
   angle = t*Math.PI/180;
-  if(angle<=Math.PI/2) {  
+  if(angle<=Math.PI/2 && open) {  
     for (i=0; i<size; i++)
       for(j=0; j<size; j++)
       {
@@ -329,33 +339,45 @@ function animate() {
       {
         geoSidesTopo.vertices[i].applyAxisAngle(axisy,-Math.PI/180)
       }
-    }
+    t = t+1;
+  }
+  else if(angle>=0 && !open)
+  {
+    for (i=0; i<size; i++)
+      for(j=0; j<size; j++)
+      {
+        geoTopo.vertices[size*i+j].applyAxisAngle(axisy,Math.PI/180)
+        geoTopo2.vertices[size*i+j].applyAxisAngle(axisy,Math.PI/180)
+      }
+      for (i=0; i<8; i++)
+      {
+        geoSidesTopo.vertices[i].applyAxisAngle(axisy,Math.PI/180)
+      }
+    t = t-1;
+  }
+
+  if(time >= 180 && open)
+  {
+    open = false;
+    time = 0;
+  }
+  else if(time >= 180 && !open)
+  {
+    open = true;
+    time = 0;
+  }
 
     if(s>5 && estado==2)
-    {
-      var meshc = new THREE.Mesh( geoTopo, 
-        new THREE.MeshPhongMaterial({
-           vertexColors: THREE.VertexColors,
-         //flatShading: true,
-           side: THREE.DoubleSide,
-           map: textureforster2,
-         }) 
-       )
-      scene.add(meshc)
+    { 
+      scene.remove(meshc2)
+      scene.add(meshc1)
       estado=1;
       s=0;
     }
     else if(s>5 && estado==1)
     {
-      var meshc = new THREE.Mesh( geoTopo, 
-        new THREE.MeshPhongMaterial({
-           vertexColors: THREE.VertexColors,
-         //flatShading: true,
-           side: THREE.DoubleSide,
-           map: textureforster1,
-         }) 
-       )
-      scene.add(meshc)
+      scene.remove(meshc1)
+      scene.add(meshc2)
       estado=2;
       s=0;
     }
@@ -369,7 +391,7 @@ function animate() {
    
 
   renderer.render( scene, camera ); 
-  t=t+1;
+  time=time+1;
   s=s+1;
 
 } 
